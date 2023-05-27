@@ -84,7 +84,7 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder": True,
      "topmenu_links": [
           # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"name": "Home",  "url": "/site/"},
+        {"name": "Home",  "url": ""},
         {"app": "Site"},
         {"app": "Accounts"},
         {"app": "auth"},
@@ -171,16 +171,17 @@ WSGI_APPLICATION = "SDK.wsgi.application"
 
 
 #for Local
+"""
 DATABASES = {
 'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+"""
 
 # for host
-"""
+
 DATABASES = {
     "default": {
         "ENGINE": "djongo",
@@ -192,7 +193,7 @@ DATABASES = {
 
         }
     }
-}"""
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
