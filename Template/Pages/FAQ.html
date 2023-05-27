@@ -1,0 +1,43 @@
+{% extends 'Pages/base.html' %}
+{% load static %}
+
+    
+{% block content %}
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">FAQ</h1>
+                <a href="" class="h4 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h4 text-white">FAQ</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                {% for description in descriptions %}
+                <div class="col-lg-12">
+                    <div class="section-title mb-12">
+                        <h2 class="display-5 " style="margin-bottom: 2rem;"> {{ description.question|capfirst }}</h2>
+                    </div>
+                    <h4 class="text-body  mb-4" style="text-align: justify;line-height: 2.5rem;"> {{ description.answer }} </h4>
+                   
+                   
+                </div>
+               {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    
+
+  
+    {% endblock %}

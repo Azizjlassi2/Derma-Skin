@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Registration</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- MATERIAL DESIGN ICONIC FONT -->
+	<link rel="stylesheet"
+		href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css' %}">
+
+	<!-- STYLE CSS -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+	<style>
+		.wrapper {
+			background-image: url("{% static 'images/bg-registration-form-1.jpg' %}");
+
+		}
+		 .form-control {
+    align-items: center;
+    width: 150%;
+  }
+
+		
+	</style>
+	<div class="wrapper">
+		<div class="inner">
+				<div class="image-holder" style="margin-top: 0px; padding-top: 0px;">
+					<a href="{% url 'Home' %}"><img src="{% static 'images/registration-form-1.jpg' %}" alt=""></a>
+				</div>
+
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h3>Registration Form</h3>
+				<div class="form-wrapper">
+					<label for="Username">Username </label>
+					<input type="text" id="Username" name="username" class="form-control" required>
+
+				</div>
+				<div class="form-wrapper">
+					<label for="Email Address"> Email Address</label>
+					<input type="text" name="email" id="Email Address" class="form-control" required>
+
+				</div>
+				<div class="form-wrapper">
+					<label for="genre"> Gender</label>
+					<select name="genre" id="genre" class="form-control" required>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+					</select>
+
+				</div>
+
+				<div class="form-wrapper">
+					<label for="Gouvernorat"> Gouvernorat</label>
+					<select name="gouvernorat" id="Gouvernorat" class="form-control" onchange="afficherVilles()"
+						required>
+						<option value="Ariana">Ariana</option>
+						<option value="Beja">Béja</option>
+						<option value="Ben Arous">Ben Arous</option>
+						<option value="Bizerte">Bizerte</option>
+						<option value="Gabes">Gabès</option>
+						<option value="Gafsa">Gafsa</option>
+						<option value="Jendouba">Jendouba</option>
+						<option value="Kairouan">Kairouan</option>
+						<option value="Kasserine">Kasserine</option>
+						<option value="Kebili">Kébili</option>
+						<option value="Kef">Le Kef</option>
+						<option value="Mahdia">Mahdia</option>
+						<option value="Manouba">Manouba</option>
+						<option value="Medenine">Médenine</option>
+						<option value="Monastir">Monastir</option>
+						<option value="Nabeul">Nabeul</option>
+						<option value="Sfax">Sfax</option>
+						<option value="Sidi Bouzid">Sidi Bouzid</option>
+						<option value="Siliana">Siliana</option>
+						<option value="Sousse">Sousse</option>
+						<option value="Tataouine">Tataouine</option>
+						<option value="Tozeur">Tozeur</option>
+						<option value="Tunis">Tunis</option>
+						<option value="Zaghouan">Zaghouan</option>
+					</select>
+				</div>
+				<div class="form-wrapper">
+					<label for="City">City</label>
+					<select name="city" id="City" class="form-control" required>
+						<option value="">Sélectionnez d'abord un gouvernorat</option>
+					</select>
+				</div>
+				<div class="form-wrapper">
+					<label for="Age">Age</label>
+					<input type="number" id="Age" name="age" class="form-control" required>
+
+				</div>
+
+				<div class="form-wrapper">
+					<label for="Number">Phone	</label>
+					<input type="tel" id="number" name="number" class="form-control" required>
+
+				</div>
+
+				<div class="form-wrapper">
+					<label for="Password">Password</label>
+					<input type="password" name="password" id="Password" class="form-control" required>
+
+				</div>
+				<div class="form-wrapper">
+					<label for="Profil Image">Profil Image</label>
+					<input type="file" name="profil_image" id="Profil Image" class="form-control">
+				</div>
+				<div class="form-wrapper"> Already have a account ? <a href="{% url 'login_page' %}"> Click here </a>
+				</div>
+				<button id="registration-button">Save
+
+				</button>
+
+				<div class="form-wrapper"> You Are a Patient ? <a href="{% url 'register' %}"> Click here </a></div>
+			</form>
+		
+		</div>
+	</div>
+	<script>
+		const form = document.querySelector('#registration-form');
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const data = new FormData(event.target);
+			const url = '/register/';
+			fetch(url, {
+				method: 'POST',
+				body: data
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+		});
+	</script>
+	<script>
+		function afficherVilles() {
+			var gouvernoratSelect = document.getElementById("Gouvernorat");
+			var villeSelect = document.getElementById("City");
+			villeSelect.innerHTML = ""; // Réinitialiser la liste des villes à chaque changement de gouvernorat
+
+			if (gouvernoratSelect.value === "Ariana") {
+				villeSelect.innerHTML += "<option value='Ariana'>Ariana</option>";
+				villeSelect.innerHTML += "<option value='La Soukra'>La Soukra</option>";
+				villeSelect.innerHTML += "<option value='Mnihla'>Mnihla</option>";
+			} else if (gouvernoratSelect.value === "Beja") {
+				villeSelect.innerHTML += "<option value='Béja'>Béja</option>";
+				villeSelect.innerHTML += "<option value='Medjez el-Bab'>Medjez el-Bab</option>";
+				villeSelect.innerHTML += "<option value='Nefza'>Nefza</option>";
+			} else if (gouvernoratSelect.value === "Ben Arous") {
+				villeSelect.innerHTML += "<option value='Ben Arous'>Ben Arous</option>";
+				villeSelect.innerHTML += "<option value='Ezzahra'>Ezzahra</option>";
+				villeSelect.innerHTML += "<option value='Radès'>Radès</option>";
+			} else if (gouvernoratSelect.value === "Bizerte") {
+				villeSelect.innerHTML += "<option value='Bizerte'>Bizerte</option>";
+				villeSelect.innerHTML += "<option value='Menzel Bourguiba'>Menzel Bourguiba</option>";
+				villeSelect.innerHTML += "<option value='Zarzouna'>Zarzouna</option>";
+			} else if (gouvernoratSelect.value === "Gabès") {
+				villeSelect.innerHTML += "<option value='El Hamma'>El Hamma</option>";
+				villeSelect.innerHTML += "<option value='Gabès'>Gabès</option>";
+				villeSelect.innerHTML += "<option value='Ghannouch'>Ghannouch</option>";
+				villeSelect.innerHTML += "<option value='Mareth'>Mareth</option>";
+				villeSelect.innerHTML += "<option value='Matmata'>Matmata</option>";
+				villeSelect.innerHTML += "<option value='Menzel El Habib'>Menzel El Habib</option>";
+				villeSelect.innerHTML += "<option value='Metouia'>Metouia</option>";
+				villeSelect.innerHTML += "<option value='Nouvelle Matmata'>Nouvelle Matmata</option>";
+			}
+
+			else if (gouvernoratSelect.value === "Gafsa") {
+				villeSelect.innerHTML += "<option value='Gafsa'>Gafsa</option>";
+				villeSelect.innerHTML += "<option value='El Ksar'>El Ksar</option>";
+				villeSelect.innerHTML += "<option value='Métlaoui'>Métlaoui</option>";
+			} else if (gouvernoratSelect.value === "Jendouba") {
+				villeSelect.innerHTML += "<option value='Jendouba'>Jendouba</option>";
+				villeSelect.innerHTML += "<option value='Tabarka'>Tabarka</option>";
+				villeSelect.innerHTML += "<option value='Ain Draham'>Ain Draham</option>";
+			} else if (gouvernoratSelect.value === "Kairouan") {
+				villeSelect.innerHTML += "<option value='Kairouan'>Kairouan</option>";
+				villeSelect.innerHTML += "<option value='Sousse'>Sousse</option>";
+				villeSelect.innerHTML += "<option value='Hajeb El Ayoun'>Hajeb El Ayoun</option>";
+			} else if (gouvernoratSelect.value === "Kasserine") {
+				villeSelect.innerHTML += "<option value='Kasserine'>Kasserine</option>";
+				villeSelect.innerHTML += "<option value='Sbeitla'>Sbeitla</option>";
+				villeSelect.innerHTML += "<option value='Feriana'>Feriana</option>";
+			} else if (gouvernoratSelect.value === "Kébili") {
+				villeSelect.innerHTML += "<option value='Douz'>Douz</option>";
+				villeSelect.innerHTML += "<option value='Faouar'>Faouar</option>";
+				villeSelect.innerHTML += "<option value='Kébili'>Kébili</option>";
+				villeSelect.innerHTML += "<option value='Souk Lahad'>Souk Lahad</option>";
+			}
+			else if (gouvernoratSelect.value === "Le Kef") {
+				villeSelect.innerHTML += "<option value='Le Kef'>Le Kef</option>";
+				villeSelect.innerHTML += "<option value='Sakiet Sidi Youssef'>Sakiet Sidi Youssef</option>";
+				villeSelect.innerHTML += "<option value='Kalâat Khasba'>Kalâat Khasba</option>";
+			} else if (gouvernoratSelect.value === "Mahdia") {
+				villeSelect.innerHTML += "<option value='Bou Merdes'>Bou Merdes</option>";
+				villeSelect.innerHTML += "<option value='Chebba'>Chebba</option>";
+				villeSelect.innerHTML += "<option value='El Jem'>El Jem</option>";
+				villeSelect.innerHTML += "<option value='Essouassi'>Essouassi</option>";
+				villeSelect.innerHTML += "<option value='Hebira'>Hebira</option>";
+				villeSelect.innerHTML += "<option value='Ksour Essef'>Ksour Essef</option>";
+				villeSelect.innerHTML += "<option value='Mahdia'>Mahdia</option>";
+				villeSelect.innerHTML += "<option value='Melloulèche'>Melloulèche</option>";
+				villeSelect.innerHTML += "<option value='Ouled Chamekh'>Ouled Chamekh</option>";
+				villeSelect.innerHTML += "<option value='Rejiche'>Rejiche</option>";
+				villeSelect.innerHTML += "<option value='Sidi Alouane'>Sidi Alouane</option>";
+			} else if (gouvernoratSelect.value === "Manouba") {
+				villeSelect.innerHTML += "<option value='Manouba'>Manouba</option>";
+				villeSelect.innerHTML += "<option value='Douar Hicher'>Douar Hicher</option>";
+				villeSelect.innerHTML += "<option value='Oued Ellil'>Oued Ellil</option>";
+			} else if (gouvernoratSelect.value === "Médenine") {
+				villeSelect.innerHTML += "<option value='Médenine'>Médenine</option>";
+				villeSelect.innerHTML += "<option value='Ben Gardane'>Ben Gardane</option>";
+				villeSelect.innerHTML += "<option value='Zarzis'>Zarzis</option>";
+			} else if (gouvernoratSelect.value === "Monastir") {
+				villeSelect.innerHTML += "<option value='Bembla-Mnara'>Bembla-Mnara</option>";
+				villeSelect.innerHTML += "<option value='Jemmal'>Jemmal</option>";
+				villeSelect.innerHTML += "<option value='Ksar Hellal'>Ksar Hellal</option>";
+				villeSelect.innerHTML += "<option value='Moknine'>Moknine</option>";
+				villeSelect.innerHTML += "<option value='Monastir'>Monastir</option>";
+				villeSelect.innerHTML += "<option value='Sahline'>Sahline</option>";
+				villeSelect.innerHTML += "<option value='Sayada-Lamta-Bou Hajar'>Sayada-Lamta-Bou Hajar</option>";
+				villeSelect.innerHTML += "<option value='Téboulba'>Téboulba</option>";
+				villeSelect.innerHTML += "<option value='Zéramdine'>Zéramdine</option>";
+			}
+			else if (gouvernoratSelect.value === "Nabeul") {
+				villeSelect.innerHTML += "<option value='Nabeul'>Nabeul</option>";
+				villeSelect.innerHTML += "<option value='Hammamet'>Hammamet</option>";
+				villeSelect.innerHTML += "<option value='Kelibia'>Kelibia</option>";
+			} else if (gouvernoratSelect.value === "Sfax") {
+				villeSelect.innerHTML += "<option value='Agareb'>Agareb</option>";
+				villeSelect.innerHTML += "<option value='Bir Ali Ben Khalifa'>Bir Ali Ben Khalifa</option>";
+				villeSelect.innerHTML += "<option value='El Amra'>El Amra</option>";
+				villeSelect.innerHTML += "<option value='El Hencha'>El Hencha</option>";
+				villeSelect.innerHTML += "<option value='Gremda'>Gremda</option>";
+				villeSelect.innerHTML += "<option value='Jebiniana'>Jebiniana</option>";
+				villeSelect.innerHTML += "<option value='Kerkennah'>Kerkennah</option>";
+				villeSelect.innerHTML += "<option value='Mahrès'>Mahrès</option>";
+				villeSelect.innerHTML += "<option value='Sakiet Eddaier'>Sakiet Eddaier</option>";
+				villeSelect.innerHTML += "<option value='Sakiet Ezzit'>Sakiet Ezzit</option>";
+				villeSelect.innerHTML += "<option value='Sfax'>Sfax</option>";
+				villeSelect.innerHTML += "<option value='Skhira'>Skhira</option>";
+			} else if (gouvernoratSelect.value === "Sidi Bouzid") {
+				villeSelect.innerHTML += "<option value='Sidi Bouzid'>Sidi Bouzid</option>";
+				villeSelect.innerHTML += "<option value='Mezzouna'>Mezzouna</option>";
+				villeSelect.innerHTML += "<option value='Regueb'>Regueb</option>";
+			} else if (gouvernoratSelect.value === "Siliana") {
+				villeSelect.innerHTML += "<option value='Siliana'>Siliana</option>";
+				villeSelect.innerHTML += "<option value='Bou Arada'>Bou Arada</option>";
+				villeSelect.innerHTML += "<option value='El Krib'>El Krib</option>";
+			} else if (gouvernoratSelect.value === "Sousse") {
+				villeSelect.innerHTML += "<option value='Akouda'>Akouda</option>";
+				villeSelect.innerHTML += "<option value='Bouficha'>Bouficha</option>";
+				villeSelect.innerHTML += "<option value='Enfidha'>Enfidha</option>";
+				villeSelect.innerHTML += "<option value='Hammam Sousse'>Hammam Sousse</option>";
+				villeSelect.innerHTML += "<option value='Kalâa Kebira'>Kalâa Kebira</option>";
+				villeSelect.innerHTML += "<option value='Kalâa Seghira'>Kalâa Seghira</option>";
+				villeSelect.innerHTML += "<option value='Kondar'>Kondar</option>";
+				villeSelect.innerHTML += "<option value='Ksibet Thrayet'>Ksibet Thrayet</option>";
+				villeSelect.innerHTML += "<option value='M'saken'>M'saken</option>";
+				villeSelect.innerHTML += "<option value='Sidi Bou Ali'>Sidi Bou Ali</option>";
+				villeSelect.innerHTML += "<option value='Sousse'>Sousse</option>";
+				villeSelect.innerHTML += "<option value='Zaouiet Sousse'>Zaouiet Sousse</option>";
+			}
+			else if (gouvernoratSelect.value === "Tataouine") {
+				villeSelect.innerHTML += "<option value='Tataouine'>Tataouine</option>";
+				villeSelect.innerHTML += "<option value='Ghomrassen'>Ghomrassen</option>";
+				villeSelect.innerHTML += "<option value='Bir Lahmar'>Bir Lahmar</option>";
+			} else if (gouvernoratSelect.value === "Tozeur") {
+				villeSelect.innerHTML += "<option value='Tozeur'>Tozeur</option>";
+				villeSelect.innerHTML += "<option value='Degache'>Degache</option>";
+				villeSelect.innerHTML += "<option value='Tamerza'>Tamerza</option>";
+			} else if (gouvernoratSelect.value === "Tunis") {
+				villeSelect.innerHTML += "<option value='Tunis'>Tunis</option>";
+				villeSelect.innerHTML += "<option value='La Marsa'>La Marsa</option>";
+				villeSelect.innerHTML += "<option value='Le Bardo'>Le Bardo</option>";
+			} else if (gouvernoratSelect.value === "Zaghouan") {
+				villeSelect.innerHTML += "<option value='Zaghouan'>Zaghouan</option>";
+				villeSelect.innerHTML += "<option value='Nadhour'>Nadhour</option>";
+				villeSelect.innerHTML += "<option value='Zriba'>Zriba</option>";
+			}
+		}
+	</script>
+
+</body>
+
+</html>

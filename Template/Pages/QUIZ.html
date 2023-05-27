@@ -1,0 +1,61 @@
+{% extends 'Pages/base.html' %}
+{% load static %}
+
+    
+{% block content %}
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">QUIZ</h1>
+                <a href="" class="h4 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h4 text-white">QUIZ</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                <form method ="post">
+                           {% csrf_token %}
+
+                {% for question in questions %}
+                <div class="col-lg-12">
+                    <div class="section-title mb-12">
+                        <h3 style="	font-weight: bold;"> {{ question.question }}</h3>
+                    </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1"  style="	font-weight: bold;" >
+                          <h5> YES</h5>
+                        </label>
+                        </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                        <label class="form-check-label" for="flexRadioDefault2"  style="	font-weight: bold;">
+                         <h5>  NO</h5>
+                        </label>
+                        </div>
+
+                   
+                </div>
+                {% endfor %}
+                <button id="registration-button" >Submit
+                         <i class="zmdi zmdi-arrow-right"></i>
+                     </button>
+               </form>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    
+
+
+    {% endblock %}
