@@ -6,11 +6,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("site/admin/", admin.site.urls,name="admin"),
+    path("admin/", admin.site.urls,name="admin"),
     path('api/',include('api.urls')),
     path('accounts/',include('Accounts.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
-    path('site/',include('Site.urls')),
+    path('',include('Site.urls')),
     path('chat/',include('chat.urls'))
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

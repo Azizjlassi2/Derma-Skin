@@ -1,7 +1,8 @@
 gunicorn
-
+whitenoise
 appdirs
 asgiref
+tbb
 
 astunparse
 async-timeout
