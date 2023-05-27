@@ -188,7 +188,7 @@ DATABASES = {
         "CLIENT": {
             "host": "mongodb+srv://azizjlassi:azizjlassi@dcp.h5vw86t.mongodb.net/",
             
-            "name": "SCD",
+            "name": "DCP",
             "authMechanism":"SCRAM-SHA-1" # for atlas cloud db
 
         }
