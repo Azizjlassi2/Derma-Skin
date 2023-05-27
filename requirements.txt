@@ -28,8 +28,7 @@ daal4py==2023.1.1
 daphne==4.0.0
 
 
-datashape==0.5.4
-
+datashape==0.5.2
 dill==0.3.6
 distlib==0.3.6
 
