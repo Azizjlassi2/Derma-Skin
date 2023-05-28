@@ -25,7 +25,6 @@ class QuestionQCM(models.Model):
 class Response(models.Model):
     
     CHOISES = (("YES","YES"),("NO","NO"))
-    user = models.ForeignKey(AppUser,on_delete=models.CASCADE)
     question = models.ForeignKey(QuestionQCM,on_delete=models.CASCADE)
 
     response = models.CharField(max_length=10,choices=CHOISES)
