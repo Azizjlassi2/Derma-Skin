@@ -185,11 +185,13 @@ DATABASES = {
 DATABASES = {
     "default": {
         "ENGINE": "djongo",
+        "NAME": "DCP",
         "CLIENT": {
             "host":"mongodb+srv://azizjlassi:azizjlassi@dcp.h5vw86t.mongodb.net/?retryWrites=true&w=majority",
+            "username":"azizjlassi",
+            "password":"azizjlassi",
+
             
-            "name": "DCP",
-            "authMechanism":"SCRAM-SHA-1" # for atlas cloud db
 
         }
     }
