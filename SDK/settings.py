@@ -84,7 +84,7 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder": True,
      "topmenu_links": [
           # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"name": "Home",  "url": ""},
+        {"name": "Home",  "url": "/"},
         {"app": "Site"},
         {"app": "Accounts"},
         {"app": "auth"},
