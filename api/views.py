@@ -46,7 +46,7 @@ def get_routes(request):
                 "username":"the name of the user ",
                 "password":"the password of the user "
             },
-            'Description': "Invoke the Login System"
+            'Description': "Invoke the Login System "
         },
          {
             "Endpoint":'/logout/user/',

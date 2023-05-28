@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-*(edo+sm@*9q(c28aaqwg=pe34on(+e_+@#e1j(!k-+k4_grts"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 CSRF_TRUSTED_ORIGINS=["https://derma-skin.up.railway.app"]
 ALLOWED_HOSTS = ["*"]
