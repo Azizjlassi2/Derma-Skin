@@ -10,7 +10,8 @@ from django.contrib import messages
 
 
 from Accounts.models import AppUser
-from .models import QuestionQCM ,DoctorRequest
+from .models import QuestionQCM 
+from Accounts.models import DoctorRequest
 
 
 import tensorflow as tf

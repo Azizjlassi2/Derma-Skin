@@ -137,13 +137,14 @@
               <input type="tel" id="number" name="number" value="{{user.number }}" class="form-control" required>
 
             </div>
+            <div class="form-wrapper">
+              <label for="Degree Image">Degree Image</label>
+              <input type="file" name="degree_image" id="Degree Image" class="form-control">
+            </div>
+
             {% endif %}
 
-            <div class="form-wrapper">
-              <label for="Password">Password</label>
-              <input type="password" name="password" id="Password" value="{{user.password }}" class="form-control" required>
-
-            </div>
+           
             <div class="form-wrapper">
               <label for="Profil Image">Profil Image</label>
               <input type="file" name="profil_image" id="Profil Image" value="{{user.profil_image }}" class="form-control">

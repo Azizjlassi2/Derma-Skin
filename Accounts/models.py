@@ -25,9 +25,9 @@ class AppUser(AbstractUser):
     genre = models.CharField(null=False,max_length=20, default="Homme", choices=Genre)
     gouvernorat = models.CharField(null=False,max_length=20)
     city = models.CharField(null=False,max_length=20)
-    number = models.CharField(max_length=20 , null=True,blank=True)
     email = models.EmailField(default="exemple@gmail.com",blank=True,null=True)
-    profil_image = models.ImageField(blank=True,null=True,upload_to='pics/')
+    degree = models.ImageField(blank=True,null=True,upload_to='pics/users/{id}/degree image/')
+    profil_image = models.ImageField(blank=True,null=True,upload_to=f'pics/users/{id}/profil image/')
     contacted_users =models.ManyToManyField('self', blank=True,symmetrical=True)
 
     created = models.DateTimeField(auto_now_add=True)
@@ -96,4 +96,27 @@ class AppUser(AbstractUser):
 
 
 
+
+
+
+class DoctorRequest(models.Model):
+    Genre = (
+        ('Homme','Homme'),
+        ('Femme','Femme')
+    )
+
+    doctor_name = models.CharField(max_length=50)
+    doctor_email = models.EmailField()
+    doctor_gouvernerat = models.CharField(max_length=50)
+    doctor_city = models.CharField(max_length=50)
+    doctor_genre = models.CharField(null=False,max_length=20, default="Homme", choices=Genre)
+    doctor_age = models.IntegerField()
+    doctor_password = models.CharField(max_length=50)
+    doctor_degree_image = models.ImageField(blank=True,null=True,upload_to='pics/requests/{id}/degree image/')
+    profil_image = models.ImageField(blank=True,null=True,upload_to='pics/requests/{id}/profil image/')
+    request_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.doctor_name
+ 
 

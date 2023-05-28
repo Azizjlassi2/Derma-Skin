@@ -2,10 +2,10 @@ from rest_framework.serializers import ModelSerializer
 
 
 
-from Accounts.models import  AppUser
+from Accounts.models import  AppUser,DoctorRequest
 
 # Site APP
-from Site.models import  Description , QuestionQCM , Result,DoctorRequest , ContactMessage
+from Site.models import  Description , QuestionQCM , Result , ContactMessage
 
 
 

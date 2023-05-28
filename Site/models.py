@@ -38,27 +38,6 @@ class Result(models.Model):
     def __str__(self):
         return self.result
   
-class DoctorRequest(models.Model):
-    Genre = (
-        ('Homme','Homme'),
-        ('Femme','Femme')
-    )
-
-    doctor_name = models.CharField(max_length=50)
-    doctor_email = models.EmailField()
-    doctor_gouvernerat = models.CharField(max_length=50)
-    doctor_city = models.CharField(max_length=50)
-    doctor_genre = models.CharField(null=False,max_length=20, default="Homme", choices=Genre)
-    doctor_age = models.IntegerField()
-    doctor_password = models.CharField(max_length=50)
-    doctor_phone = models.CharField(max_length=50)
-    profil_image = models.ImageField(blank=True,null=True,upload_to='pics/')
-    request_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.doctor_name
- 
-
 
 
 class ContactMessage(models.Model):
@@ -81,7 +60,7 @@ class Test(models.Model):
 
     user_id = models.CharField(max_length=50)
     user_name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='test/images/')
+    image = models.ImageField(upload_to=f'test/{user_name}/')
     result = models.CharField(max_length=50)
     tested_at = models.DateTimeField(auto_now_add=True)
 

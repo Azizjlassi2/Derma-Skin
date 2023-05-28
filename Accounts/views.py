@@ -33,9 +33,11 @@ def login_user(request):
 
         if user is not None:
             # Login user and redirect to homepage
-            login(request, user)
-            
-            return  redirect('Home')
+            if user.is_superuser:
+                login(request, user)
+                return redirect("/admin/")
+            else:
+                return  redirect('Home')
         else:
             # Return error message
             messages.error(request,('There was a Error in Login ! '))
@@ -98,10 +100,10 @@ def register_doctor(request):
         gouvernorat = data.get('gouvernorat')
         city = data.get('city')
         email = data.get('email')
-        number = data.get('number')
+        number = data.get('degree_image')
         password = data.get('password')
 
-        from Site.models import DoctorRequest
+        from .models import DoctorRequest
 
         doctor_request = DoctorRequest()
         

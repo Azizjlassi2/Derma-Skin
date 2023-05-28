@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-*(edo+sm@*9q(c28aaqwg=pe34on(+e_+@#e1j(!k-+k4_grts"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 CSRF_TRUSTED_ORIGINS=["https://derma-skin.up.railway.app"]
 ALLOWED_HOSTS = ["*"]
@@ -243,7 +243,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 #SMTP Configuration
-
+"""
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'

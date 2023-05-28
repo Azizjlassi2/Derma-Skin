@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from Accounts.models import DoctorRequest
 # Register your models here.
 
 

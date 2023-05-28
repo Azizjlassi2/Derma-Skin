@@ -20,7 +20,7 @@ from django.contrib.auth import authenticate,logout,login
 
 
 
-from Accounts.models import AppUser
+from Accounts.models import AppUser,DoctorRequest
 from Site.models import *
 from .serializers import *
 
