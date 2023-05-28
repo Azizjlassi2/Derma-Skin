@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-*(edo+sm@*9q(c28aaqwg=pe34on(+e_+@#e1j(!k-+k4_grts"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 CSRF_TRUSTED_ORIGINS=["https://derma-skin.up.railway.app"]
 ALLOWED_HOSTS = ["*"]
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'whitenoise.runserver_nostatic',
     'jazzmin',
     'daphne',
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     #apps
     'api.apps.ApiConfig',
     'Accounts.apps.AccountsConfig',
-    'rest_framework',
     'corsheaders',
     'channels',
     'chat',
