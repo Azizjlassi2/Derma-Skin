@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll(".contact-doctor");
+buttons = document.querySelectorAll(".contact-doctor");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const xhr = new XMLHttpRequest();

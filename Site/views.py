@@ -1,7 +1,7 @@
 from django import utils
 from django.shortcuts import redirect, render
 import json
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import numpy as np
 from .decorators import unauthenticated_user
@@ -198,30 +198,24 @@ def contact_doctor(request):
     if request.method == 'POST':
         data = json.loads(request.body)    
         doctor_id = data['doctor_id']
+        print(doctor_id)
 
-        return redirect("contactSelectedDoctor",pk=doctor_id)
+        return HttpResponseRedirect("messages/",args=[doctor_id])
 
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
 
-def search_doctor(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-      
-        gouvernerat = data['gouvernerat']
-        city = data['city']
-        print(gouvernerat," : ",city)
-        return JsonResponse({'message': 'Data submitted successfully.'})
-    else:
-        return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+def messagesPage(request,args=None):
+    if request.method == 'GET':
+        if args:
+            doctor_id = args[0]
+            print(doctor_id)
+        return render(request,"Pages/messages.html",{})
     
-
-
-def messagesPage(request):
-    return render(request,"Pages/messages.html",{})
-
 
 # tache :
 """
