@@ -70,6 +70,12 @@ def get_routes(request):
             },
             'Description': "Invoke the Registration System"
         },
+         {
+            "Endpoint": '/descriptions/',
+            "method": 'GET',
+            'body':None,
+            'Description': "Returns all the Descriptions of FAQ"
+        },
 
 
     ]
@@ -132,8 +138,8 @@ def register_user(request):
         except Exception as e:
             return R("There Was A Problem In Creating User ",status=status.HTTP_400_BAD_REQUEST)
 
-       
-
+ 
+ 
 
 
 class AppUsersView(APIView):
