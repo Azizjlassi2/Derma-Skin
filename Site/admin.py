@@ -49,7 +49,8 @@ class DoctorRequestAdmin(admin.ModelAdmin):
         queryset.delete()
 
 
-
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ["username", "email", "subject", "created_at"]
 
 
 
@@ -58,6 +59,6 @@ admin.site.register(QuestionQCM)
 admin.site.register(Response)
 admin.site.register(Result)
 admin.site.register(DoctorRequest,DoctorRequestAdmin)
-admin.site.register(ContactMessage)
+admin.site.register(ContactMessage,ContactMessageAdmin)
 admin.site.register(Test)
 
