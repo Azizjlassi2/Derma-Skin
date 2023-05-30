@@ -75,7 +75,9 @@ JAZZMIN_SETTINGS = {
 
     # Hide these apps when generating side menu e.g (auth)
     #"hide_apps": ["auth"],
-    "hide_apps_title": ["auth"],
+    "hide_apps": ["auth"],
+    "hide_models": ["Site.ContactMessage", "Site.Response","Site.Result"],
+
 
     "changeform_format": "carousel",
     "related_modal_active": False,
