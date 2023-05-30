@@ -8,10 +8,10 @@ from .decorators import unauthenticated_user
 from django.contrib import messages
 
 
-
 from Accounts.models import AppUser
-from .models import QuestionQCM 
-from Accounts.models import DoctorRequest
+from .models import QuestionQCM , ContactMessage
+
+
 
 
 import tensorflow as tf
@@ -104,7 +104,23 @@ def home(request,pk=None):
        
 
 def contactUs(request):
-    return render(request,'Pages/contact.html',{})
+    if request.method == "GET":
+        return render(request,'Pages/contact.html',{})
+    elif request.method =="POST":
+        data = request.POST
+        username = data['username']
+        email = data['email']
+        subject = data['subject']
+        message = data['message']
+
+        contact_message = ContactMessage(username=username,email=email,subject= subject,message=message)
+        contact_message.save()
+        return render(request,'Pages/contact.html',{"username":username})
+ 
+
+       
+
+
 
 
 def doctorsPage(request):

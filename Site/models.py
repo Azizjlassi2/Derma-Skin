@@ -42,7 +42,6 @@ class Result(models.Model):
 
 class ContactMessage(models.Model):
 
-    user_id = models.CharField(max_length=30,blank=True)
     username = models.CharField(max_length=20)
     email = models.EmailField()
     subject = models.CharField(max_length=50)
