@@ -1,7 +1,7 @@
 from django import utils
 from django.shortcuts import redirect, render
 import json
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import numpy as np
 from .decorators import unauthenticated_user
@@ -116,6 +116,7 @@ def testPage(request):
     if request.method == 'GET':
         return render(request,'Pages/test.html',{})
     if request.method == 'POST':
+        print(request.POST)
     
         message = ""
         result = ""
@@ -148,10 +149,32 @@ def FAQ_Page(request):
 
 
 def QUIZ_Page(request):
+    if request.method == "GET":
+        from .models import QuestionQCM
+        questions = QuestionQCM.objects.all()
+        return render(request,'Pages/QUIZ.html',{'questions':questions})
+    elif request.method == 'POST':
+        data = request.POST
+        print(request.POST)
+        message = ""
+        Num_YES = 0
+        for value in data:
+            print(value)
+            if value.lower().startswith("yes"):
+                Num_YES +=1
 
-    from .models import QuestionQCM
-    questions = QuestionQCM.objects.all()
-    return render(request,'Pages/QUIZ.html',{'questions':questions})
+        
+        if Num_YES <3:
+            message = " You Have a Low risk. However, it is still important to regularly monitor your skin and practice sun safety measures."
+        elif Num_YES > 3 and Num_YES <6:
+            message = "You Have a Moderate risk. Consider scheduling a professional skin examination with a dermatologist."
+        else:
+            message = " You Have a  High risk. It is recommended to seek medical attention promptly for a thorough evaluation and possible skin biopsy."
+
+
+    
+    return HttpResponse(f"<h1>{message}</h1>")
+
 
 
 @unauthenticated_user

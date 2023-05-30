@@ -29,6 +29,8 @@ urlpatterns = [
       
     path("contact/messages/",views.ContactMessagesView.as_view()),
     path("contact/messages/<int:pk>/",views.ContactMessageView.as_view()),
+
+   
     
     
     
