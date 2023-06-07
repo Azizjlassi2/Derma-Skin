@@ -33,8 +33,9 @@ def login_user(request):
 
         if user is not None:
             # Login user and redirect to homepage
+            login(request, user)
             if user.is_superuser:
-                login(request, user)
+                
                 return redirect("/admin/")
             else:
                 return  redirect('Home')
